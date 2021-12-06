@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.view.isVisible
 import com.pablodb.abc_ejercico.activitys.MainActivity
 import com.pablodb.abc_ejercico.activitys.MainPresenter
 import com.pablodb.abc_ejercico.model.Data
@@ -51,9 +52,16 @@ class DataAdapter(context : Activity, dataSet : ArrayList<Data>) : BaseAdapter()
 
         id.setText( data.id.toString() )
         desc.setText(data.description)
-        desc.isEnabled = false
         estado.isChecked = data.status
-        estado.isEnabled = false
+
+        if( editar.isVisible ){
+            desc.isEnabled = false
+            estado.isEnabled = false
+        }else{
+            desc.isEnabled = true
+            estado.isEnabled = true
+        }
+
 
         editar.setOnClickListener {
             editar.visibility = View.GONE
